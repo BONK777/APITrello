@@ -14,8 +14,9 @@ const addTask = () => {
         console.log('hi');
     })
     cancel.addEventListener('click', (e) => {
+        // desk.style.display = "none";
         task.style.display = "none";
-        adder.style.display = "block";
+        // adder.style.display = "block";
     })
     accept.addEventListener('click', (e) => {
         cancel.style.display = "none";
