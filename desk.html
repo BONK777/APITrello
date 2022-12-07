@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Fake Trello</title>
+</head>
+<body>
+    <div class="main">
+        <div class="info-block">
+            <div class="user">
+                <div class="avatar">P</div>
+                <div class="nn">
+                    <h1>Pavel</h1>
+                    <p>Name of desk</p>
+                </div>
+            </div>
+            <hr>
+            <div class="tools">
+                <nav>
+                    <button id="adder" class="add style">Add task</button>
+                    <a href="">Home</a>
+                    <a href="">Settings</a>
+                    <a href="">My desks</a>
+                </nav>
+            </div>
+        </div>
+        <div id="desks" class="desks-block">
+            <div id="added" class="desk">
+                <span contenteditable="true">Введите название</span>
+                <div id="task" class="task">
+                    <input type="text" placeholder="Имя карты">
+                    <div class="edit-task">
+                        <button id="accept" class="approve">Добавить</button>
+                        <button id="cancel" class="remove">×</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
