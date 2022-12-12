@@ -4,6 +4,7 @@ const boards = document.querySelectorAll(".boards");
 const removeBtn = document.querySelector(".remove__item-btn");
 const listItem = document.querySelectorAll(".list__item");
 const boardItem = document.querySelectorAll(".boards__item");
+console.log('a');
 
 function addTask(){
     const btn = document.querySelector(".add__btn");
