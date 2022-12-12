@@ -28,19 +28,25 @@
                 </nav>
             </div>
         </div>
-        <div id="desks" class="desks-block">
-            <div id="added" class="desk">
-                <span contenteditable="true">Введите название</span>
-                <div id="task" class="task">
-                    <input type="text" placeholder="Имя карты">
-                    <div class="edit-task">
-                        <button id="accept" class="approve">Добавить</button>
-                        <button id="cancel" class="remove">×</button>
+        <div class="boards">
+            <div class="boards__item">
+                <span contenteditable="true" class="title">Введите название</span>
+                <div class="list"></div>
+                <div class="form">  
+                    <textarea class="textarea" placeholder="Введите название таска"></textarea>
+                    <div class="buttons">
+                        <button class="add__item-btn">Добавить карту</button>
+                        <button class="cancel__item-btn">Отмена</button>
                     </div>
+                </div>
+                <div class="add__btn">
+                    <span>+</span>
+                    Добавить карту
                 </div>
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script src="dnd.js"></script>
+    <script src="api.js"></script>
 </body>
 </html>
