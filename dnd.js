@@ -4,22 +4,16 @@ const boards = document.querySelectorAll(".boards");
 const removeBtn = document.querySelector(".remove__item-btn");
 const listItem = document.querySelectorAll(".list__item");
 const boardItem = document.querySelectorAll(".boards__item");
-console.log(boardItem);
 
-
-
-//реализация добавление задач
 function addTask(){
     const btn = document.querySelector(".add__btn");
     const addBtn = document.querySelector(".add__item-btn");
     const cancelBtn = document.querySelector(".cancel__item-btn");
-    // const removeBtn = document.querySelector(".remove__item-btn");
     const textarea = document.querySelector(".textarea");
     const form = document.querySelector(".form");
 
     let value 
 
-    //добавить карточку
     btn.addEventListener('click', () =>{
         form.style.display = "block";
         btn.style.display = "none";
@@ -35,7 +29,6 @@ function addTask(){
         })
     })
 
-//отмена
     cancelBtn.addEventListener('click', e =>{
         textarea.value = ''
         value = ''
@@ -44,56 +37,29 @@ function addTask(){
 
 
     })
-
-    // //для удаления стартовой карточки
-    // function removeTask(){
-    //     const removeBtn = document.querySelector(".remove__item-btn");
-    //     const newItem = document.querySelector(".list__item");
-  
-    //     removeBtn.addEventListener("click", () =>{
-    //         newItem.style.display = "none"
-    //     })
-        
-    // }
-    // removeTask()
-
-//добавление
     addBtn.addEventListener("click", () =>{
-
         const newItem = document.createElement("div");
         newItem.classList.add("list__item");
         newItem.draggable = true;
         newItem.textContent = value;
         lists[0].append(newItem);
-        
-
         textarea.value = ""
         value = ""
         form.style.display = "none";
         btn.style.display = "flex";
-        
-        
+
         const removeBtn = document.createElement("button");
         removeBtn.classList.add("remove__item-btn");
         removeBtn.textContent = "X";
         newItem.append(removeBtn);
-        
         removeBtn.addEventListener("click", ()=>{
             newItem.style.display = "none"
         })  
-
-
         drgNdrop()
-        
-      
     })
-
-
 }
 addTask()
 
-
-// реализация добавление доски
 function addBoard(){
     const boards = document.querySelector(".boards");
     const board = document.createElement("div");
@@ -112,8 +78,6 @@ function addBoard(){
 }
 button.addEventListener("click", addBoard)
 
-
-
 function changeTitle(){
     const titles = document.querySelectorAll(".title");
  
@@ -124,12 +88,10 @@ function changeTitle(){
     })
 }
 
-
 changeTitle()
 
 let dragEl= null;
 let dropEl = null;
-
 
 function drgNdrop(){
     const listItems = document.querySelectorAll(".list__item");
@@ -159,7 +121,6 @@ function drgNdrop(){
 
    lists.forEach(board =>{
 
-       
         board.addEventListener("dragover", e => e.preventDefault())
 
         board.addEventListener("dragenter", function (e) {
@@ -195,7 +156,6 @@ function drgNdrop(){
             b.addEventListener("drop", function(e) {
                 e.preventDefault();
                 e.stopPropagation();
-                // let dropTag = e.dataTransfer.getData("text/html");
                 if (dropEl === this) {
                     this.appendChild(dragEl);
                 } else {
@@ -204,12 +164,7 @@ function drgNdrop(){
                     dropEl = null;
                 }
             });
-
-            
     })
-
-
-
 
 }    
 
