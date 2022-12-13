@@ -4,7 +4,42 @@ const boards = document.querySelectorAll(".boards");
 const removeBtn = document.querySelector(".remove__item-btn");
 const listItem = document.querySelectorAll(".list__item");
 const boardItem = document.querySelectorAll(".boards__item");
-console.log('a');
+
+let boardsList = JSON.parse(localStorage.getItem("boards") || "[]");
+// let boardsList = [{
+//     id: `board-${makeid()}`,
+//     title: 'estimated',
+//     tasks: [{
+//         id: `task-${makeid()}`,
+//         title: 'task2000',
+//     },
+//     {
+//         id: `task-${makeid()}`,
+//         title: 'task3000',
+//     }
+// ]
+// }]
+
+if (boardsList.length) {
+    // localStorage.setItem('boards', JSON.stringify([]));
+    renderInitialBoards(boardsList)
+}
+
+function renderInitialBoards(boardsList) {
+    boardsList.forEach((board) => {
+        addBoard(board)
+    })
+}
+
+function makeid() {
+    let result           = '';
+    const characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    for ( let i = 0; i < 16; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
 
 function addTask(){
     const btn = document.querySelector(".add__btn");
@@ -61,23 +96,36 @@ function addTask(){
 }
 addTask()
 
-function addBoard(){
+function addBoard(board){
     const boards = document.querySelector(".boards");
-    const board = document.createElement("div");
+    const boardEl = document.createElement("div");
 
-    board.classList.add("boards__item");
-    board.innerHTML = `
-    <span contenteditable="true" class="title">Введите название</span>
+    boardEl.classList.add("boards__item");
+    if (!board) {
+        boardsList.push({
+            id: `board-${makeid()}`,
+            title: ''
+        })
+        updateLocalStorage(boardsList)
+    }
+    boardEl.innerHTML = board ? `
+    <span contenteditable="true" class="title">${board.title}</span>
                 <div class="list">
-                    <div class="list__item" draggable="true">Карточка 1</div>
+                    ${board.tasks && board.tasks.length ? board.tasks.map((task) => `<div class="list__item" draggable="true">${task.title}</div>`).join('') : ''}
                 </div>
-                
+    ` : `
+    <span contenteditable="true" class="title">Введите название</span>
+    <div class="list"></div>
     `
-    boards.append(board);
+    boards.append(boardEl);
     changeTitle()
     drgNdrop()
 }
-button.addEventListener("click", addBoard)
+button.addEventListener("click",() => addBoard())
+
+function updateLocalStorage(boardsList){
+    localStorage.setItem('boards', JSON.stringify(boardsList))
+}
 
 function changeTitle(){
     const titles = document.querySelectorAll(".title");
